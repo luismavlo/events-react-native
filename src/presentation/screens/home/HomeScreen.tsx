@@ -18,8 +18,8 @@ export const HomeScreen = () => {
         label='Ciudades'
       />
       <PrimaryButton
-        onPress={() => navigation.navigate('Eventos')}
-        label='Eventos'
+        onPress={() => navigation.navigate('EventosSave')}
+        label='Crear Evento'
       />
       <PrimaryButton
         onPress={() => navigation.navigate('About')}

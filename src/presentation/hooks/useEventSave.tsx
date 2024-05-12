@@ -5,21 +5,13 @@ import * as UseCases from '../../core/use-cases'
 import { cityDBFetcher } from '../../config/adapters/cityDB.adapter';
 
 
-export const useEventoSave = async(data: EventRequest) => {
+export const useEventoSave = () => {
 
-  const [eventSave, setEventSave] = useState<EventSaveResponse[]>([]);
-
-  useEffect(() => {
-    initialLoad();
-  }, [])
-
-  const initialLoad = async() => {
-    console.log('Entro useEventoSave-Hook');
-    const eventSave: EventSaveResponse= await UseCases.eventSaveUseCase(cityDBFetcher,data);
-    console.log('Entro useEventoSave-Hook-response',eventSave);
+  const eventCreate = async(data: EventRequest) => {
+    return UseCases.eventSaveUseCase(cityDBFetcher,data);
   }
 
   return {
-    eventSave
+    eventCreate
   }
 }
