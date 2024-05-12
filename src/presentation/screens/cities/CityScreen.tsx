@@ -1,14 +1,18 @@
 import { type RouteProp, useRoute, useNavigation } from '@react-navigation/native'
-import { Text, View } from 'react-native'
+import { FlatList, Text, View } from 'react-native'
 import { type RootStackParams } from '../../routes/StackNavigator';
 import { globalStyles } from '../../theme/theme';
 import { useEffect } from 'react';
+import { useEventos } from '../../hooks/useEventByCity';
+import { CardCity } from '../../components/shared/CardCity';
 
 
 export const CityScreen = () => {
 
   const params = useRoute<RouteProp<RootStackParams, 'City'>>().params;
+  console.log('params =>',params);
   const navigation = useNavigation();
+  const { events } = useEventos(params.id);
 
   useEffect(() => {
 
@@ -20,16 +24,15 @@ export const CityScreen = () => {
 
 
   return (
-    <View style={globalStyles.container}>
-      <Text>City Screen</Text>
 
-      <Text style={{
-        fontSize: 20,
-        textAlign: 'center',
-        marginTop: 20
-      }}>
-        {params.id} - {params.name}
-      </Text>
+    <View style={globalStyles.container}>
+        <Text style={{ marginBottom: 10, fontSize: 30 }} >Eventos por Ciudad</Text>
+        <FlatList
+          data={events}
+          renderItem={({ item }) => (
+            <CardCity title={item.name} image={item.image} onPress={()=>{}} />
+          )}
+        />
     </View>
   )
 }
