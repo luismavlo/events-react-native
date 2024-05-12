@@ -38,5 +38,26 @@ export const globalStyles = StyleSheet.create({
     fontSize: 18,
   },
 
+  titulo: {
+    textAlign:'center',
+    fontSize:18,
+    marginTop:12,
+    marginBottom:20
+  },
+
+  containerForm: {
+    flex:1,
+    padding:35
+  },
+
+  inputGroup: {
+    flex: 1,
+    height: "15%",
+    width: "90%",
+    marginBottom: 10,
+    borderRadius: 25,
+    paddingLeft: 20,
+    color: "grey",
+  },
 
 });
