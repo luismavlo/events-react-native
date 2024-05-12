@@ -5,6 +5,7 @@ import { CityScreen } from '../screens/cities/CityScreen';
 import { AboutScreen } from '../screens/about/AboutScreen';
 import { EventsScreen } from '../screens/events/EventsScreen';
 import { BottonTabNavigation } from './BottonTabNavigation';
+import { EventsFormScreen } from '../screens/events/EventsFormScreen';
 
 export type RootStackParams = {
   Home: undefined,
@@ -12,6 +13,7 @@ export type RootStackParams = {
   About: undefined,
   Eventos: undefined,
   TabScreen: undefined,
+  EventosSave: undefined,
   City: { id: number, name: string },
 }
 
@@ -31,6 +33,7 @@ export const StackNavigator = () => {
       <Stack.Screen name="City" component={CityScreen} />
       <Stack.Screen name="About" component={AboutScreen} />
       <Stack.Screen name="Eventos" component={EventsScreen} />
+      <Stack.Screen name="EventosSave" component={EventsFormScreen} />
       <Stack.Screen name="TabScreen" component={BottonTabNavigation} />
     </Stack.Navigator>
   );

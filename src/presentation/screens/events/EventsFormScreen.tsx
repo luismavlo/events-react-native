@@ -1,15 +1,16 @@
 import { ScrollView,Text, View, TextInput, StyleSheet } from 'react-native'
+import { type NavigationProp, useNavigation } from '@react-navigation/native'
+import { type RootStackParams } from '../../routes/StackNavigator'
+import { useEventoSave } from '../../hooks/useEventSave'
 import { globalStyles } from '../../theme/theme'
 import { PrimaryButton } from '../../components/shared/PrimaryButton'
 import { useMovies } from '../../hooks/useCities'
 import { useRef,useState } from 'react'
 import { Dropdown,IDropdownRef } from 'react-native-element-dropdown'
 import { EventRequest } from '../../../infraestructure/interfaces/event-db.request'
-import * as UseCases from '../../../core/use-cases' 
-import { cityDBFetcher } from '../../../config/adapters/cityDB.adapter';
-import { EventSaveResponse } from '../../../infraestructure/interfaces/eventSave-db.response'
 
 export const EventsFormScreen = () => {
+  const navigation = useNavigation<NavigationProp<RootStackParams>>();
 
   const initialBody = {
     Nombre:'',
@@ -19,6 +20,7 @@ export const EventsFormScreen = () => {
   };
 
   const [state, setState] = useState(initialBody);
+  const { eventCreate } = useEventoSave()
 
   const handleChangeText = (value:any,name:any)=>{
     setState({...state,[name]:value})
@@ -42,10 +44,20 @@ export const EventsFormScreen = () => {
       image:state.UrlImagen,
       cityId:Number(state.City)
     };
-    console.log('obj Event =>',obj);
-    const eventSave: EventSaveResponse= await UseCases.eventSaveUseCase(cityDBFetcher,obj);
-    console.log('response eventSave =>',eventSave);
-  }
+    console.log('1.-obj Event =>',obj);
+    //const eventSave: EventSaveResponse= await UseCases.eventSaveUseCase(cityDBFetcher,obj);
+    //console.log('2.-response eventSave =>',eventSave);
+
+    eventCreate(obj)
+      .then(resp => {
+        console.log(resp)
+      }).catch(err => {
+        console.log(err)
+      })
+
+    console.log('3.-response eventSave =>',eventCreate);
+    navigation.navigate('Home');
+  };
 
   return (
     <ScrollView>
