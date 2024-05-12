@@ -22,7 +22,6 @@ const Stack = createStackNavigator<RootStackParams>();
 export const StackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={{
-      
       headerStyle: {
         elevation: 0,
         shadowColor: 'transparent'

@@ -34,7 +34,7 @@ export const BottonTabNavigation = () => {
     >
       <Tab.Screen
         name="Tab3"
-        options={{ title: '', tabBarIcon: ({ color }) => (<IonIcon name='home-outline' />) }}
+        options={{ title: 'Home', tabBarIcon: ({ color }) => (<IonIcon name='home-outline' />) }}
         component={StackNavigator} />
       <Tab.Screen
         name="Tab1"
